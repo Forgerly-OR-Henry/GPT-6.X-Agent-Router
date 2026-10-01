@@ -1,0 +1,4 @@
+interface:
+  display_name: "GPT-6.1-Sol Router"
+  short_description: "GPT-6.1-Sol leads; GPT-6-Astra helps when needed"
+  default_prompt: "Use $gpt-6-1-sol-router to complete this goal with GPT-6.1-Sol leading and select GPT-6.1-Sol or GPT-6-Astra subagents at High or XHigh as needed."
