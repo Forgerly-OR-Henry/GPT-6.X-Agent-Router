@@ -1,19 +1,21 @@
 ---
-name: gpt-6-1-sol-router
-description: Use when the user wants GPT-6.1-Sol to lead work and select GPT-6.1-Sol or GPT-6-Astra subagents by task difficulty. Keep routine work with GPT-6.1-Sol and involve GPT-6-Astra only for specific difficult judgments or problems. Subagents use only high or xhigh reasoning effort.
+name: gpt-6-x-agent-router
+description: Use when the user requests GPT-6-series agent routing with GPT-6.1-Sol or GPT-6-Astra as parent. Prefer GPT-6.1-Sol for routine subagent work, assign GPT-6-Astra specific difficult problems, and delegate Computer Use skill execution to GPT-6.1-Terra under authority set by the parent. Subagents use only high or xhigh reasoning effort.
 ---
 
-# GPT-6.1-Sol Router
+# GPT-6.X Agent Router
 
 ## Usage agreement
 
-Recommend that the user select GPT-6.1-Sol as the parent model before invoking this skill, with at least High reasoning effort; recommend XHigh for complex goals. This is user setup guidance, not a startup gate.
+This skill targets the GPT-6 series and routes only to the subagent configurations listed below. The name does not imply support for every model in that family or for future model families.
+
+Both GPT-6.1-Sol and GPT-6-Astra can serve as the parent model. Recommend GPT-6.1-Sol at High for ordinary goals or XHigh for complex goals. This is user setup guidance, not a startup gate.
 
 Start the requested work immediately after invocation:
 - Do not query, infer, or verify the parent model or its reasoning effort.
 - Do not inspect configuration, session logs, or usage limits to confirm model identity.
 - Do not ask the user to confirm their model again or switch the main chat's model.
-- The user controls the actual parent model; this skill does not guarantee that the parent is GPT-6.1-Sol.
+- The user controls the actual parent model; this skill does not select or guarantee it.
 
 This skill changes the division of work, not the task's authorization. Discussion, planning, and read-only review remain read-only. File changes and external actions retain the current task's authorization requirements.
 
@@ -23,9 +25,9 @@ Apply this routing policy to the remaining stages of the current goal until it i
 
 Understand the goal, establish constraints, choose how to execute, coordinate dependencies, handle feedback, and deliver the result.
 
-Complete small, straightforward tasks directly when the parent can do so reliably. Create a subagent when independent execution, parallel work, or keeping substantial investigation output out of the main context offers a concrete benefit.
+Complete small, straightforward tasks directly when the parent can do so reliably, except for Computer Use skill execution, which belongs to GPT-6.1-Terra. Create a general-purpose subagent when independent execution, parallel work, or keeping substantial investigation output out of the main context offers a concrete benefit.
 
-Default to GPT-6.1-Sol. Do not schedule GPT-6-Astra for mandatory opening plans, continuous supervision, or final reviews. Every GPT-6-Astra assignment must address a specific unresolved problem.
+Default to GPT-6.1-Sol for general-purpose subagents regardless of which model is the parent. Do not schedule GPT-6-Astra subagents for mandatory opening plans, continuous supervision, or final reviews. Every GPT-6-Astra subagent assignment must address a specific unresolved problem.
 
 ## Allowed subagent configurations
 
@@ -37,12 +39,14 @@ Explicitly supply both the model and reasoning effort on every spawn. Use only t
 | GPT-6.1-Sol XHigh | `gpt-6.1-sol` | `xhigh` | Bounded tasks requiring complex reasoning, ordering analysis, or preservation of interacting constraints. |
 | GPT-6-Astra High | `gpt-6-astra` | `high` | Difficult tradeoffs, checking premises or task decomposition, conflicting evidence, or a key problem GPT-6.1-Sol cannot effectively advance. |
 | GPT-6-Astra XHigh | `gpt-6-astra` | `xhigh` | The hardest key problems, including strongly conflicting constraints, difficult root-cause analysis, and deep reasoning about a core design. |
+| GPT-6.1-Terra High | `gpt-6.1-terra` | `high` | Computer Use skill execution on simple interfaces within the parent's task-specific authority. |
+| GPT-6.1-Terra XHigh | `gpt-6.1-terra` | `xhigh` | Computer Use skill execution on complex interfaces within the same authority boundary. |
 
 Do not use other models or effort levels, and do not omit parameters in reliance on parent inheritance. The user's latest explicit restrictions on model use take precedence over these defaults.
 
 ## Choosing a configuration
 
-Start with GPT-6.1-Sol High unless the task provides a concrete reason for another configuration.
+For work outside Computer Use, start with GPT-6.1-Sol High unless the task provides a concrete reason for another configuration.
 
 Use GPT-6.1-Sol XHigh for a specific reasoning challenge, such as:
 - State transitions, concurrency ordering, transaction consistency, or a complex algorithm.
@@ -58,9 +62,23 @@ Use GPT-6-Astra High when stronger judgment could resolve a specific obstacle, s
 
 Use GPT-6-Astra XHigh for the most demanding forms of these problems, particularly when constraints conflict and a consequential conclusion is difficult to validate.
 
-Choose an appropriate configuration directly; do not require a progression through all four. File count, code length, elapsed time, or an ordinary test failure alone does not justify escalation.
+For Computer Use, choose GPT-6.1-Terra High for simple interfaces and XHigh for complex interfaces. The parent judges interface complexity for the current task; higher effort does not grant broader authority.
+
+Choose an appropriate configuration directly; do not require a fixed escalation sequence. File count, code length, elapsed time, or an ordinary test failure alone does not justify escalation.
 
 Missing permissions, unavailable environments, insufficient information, and unclear user goals need their corresponding remedy. Changing models does not resolve these blockers.
+
+## Computer Use with GPT-6.1-Terra
+
+Delegate Computer Use skill execution to GPT-6.1-Terra. Its assignment is limited to UI observation and interaction through that skill and its required runtime operations. Keep task-level planning, analysis, implementation, and conclusions with the parent or GPT-6.1-Sol/GPT-6-Astra subagents. Have Terra read and follow the available Computer Use skill and relevant runtime instructions.
+
+The parent sets the task-specific operating rules before execution: the objective, allowed scope, decisions Terra may make independently, and whether questions go to the parent or a designated GPT-6.1-Sol or GPT-6-Astra subagent. Define these from the actual task rather than using a fixed permission catalogue in this skill. If the grant is missing or unclear, Terra reports the missing decision to the parent before taking the affected action.
+
+Within that grant, Terra may choose buttons, navigation paths, input steps, and similar local interaction details without asking about every click. When deeper judgment is needed or an action exceeds the grant, it reports the observed state, relevant evidence, and the specific decision needed to the parent or designated decision-maker. It waits for that decision before continuing the affected action. A designated subagent may decide only within the authority assigned by the parent; only the parent may revise Terra's grant, within the user's authorization and platform permissions.
+
+This division of work is an instruction-level boundary, not a separate tool sandbox. Interface complexity and XHigh reasoning do not authorize Terra to take over deeper decisions.
+
+Keep one active operator for a shared interface. When waiting for a decision, report the current UI state without making extra changes merely to prepare a handoff. If the parent replaces a Terra worker, including to change its reasoning effort, pause the previous worker's UI work before passing on the current state, completed actions, and pending decision. A handoff alone does not authorize closing the application or ending its ongoing tasks. Do not replay completed actions blindly.
 
 ## Delegating work
 
@@ -80,7 +98,7 @@ Give each work package:
 - Allowed actions and scope, including whether the assignment is read-only or may edit files.
 - Dependencies, interface agreements, and acceptance criteria.
 - Previous attempts, existing results, and unresolved questions.
-- Conditions that require stopping and reporting to the parent.
+- Conditions that require pausing the affected work and reporting to the parent or its designated decision-maker.
 
 Delegate independently verifiable outcomes. Do not mechanically split reading files, changing functions, and running commands into different agents.
 
@@ -112,7 +130,7 @@ Request a conclusion with supporting evidence, conditions under which it applies
 
 ## Feedback, escalation, and blockers
 
-Ask subagents to execute, verify, and fix ordinary failures autonomously within their authorization instead of seeking permission for each step.
+Ask subagents to execute, verify, and fix ordinary failures autonomously within their assigned role and authorization instead of seeking permission for each step. This does not expand Terra's Computer Use role or its decision authority.
 
 When a premise fails, the scope needs to expand, the evidence cannot support a conclusion, or one evidence-based correction still produces no progress, require a report with:
 - The current blocker.
@@ -146,6 +164,6 @@ When expert conclusions conflict with observed results, return the evidence for 
 
 Before delivery, ensure relevant execution has finished and clean up temporary validation processes started for this task according to the current project's rules.
 
-Use normal progress updates to explain meaningful assignments briefly. When calling GPT-6-Astra, identify the specific problem it will address without producing a lengthy routing log.
+Use normal progress updates to explain meaningful assignments briefly. When calling a GPT-6-Astra subagent, identify the specific problem it will address without producing a lengthy routing log.
 
-Report results, verification, and remaining limitations, and briefly state whether GPT-6-Astra was used. Do not claim a specific allowance, monetary, or percentage saving without actual measurement.
+Report results, verification, and remaining limitations, and briefly state whether GPT-6-Astra subagents or GPT-6.1-Terra were used. Do not claim quota savings, cost reductions, or speed improvements without actual measurement.
