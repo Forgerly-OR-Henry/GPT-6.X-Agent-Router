@@ -8,12 +8,12 @@ The name identifies the target model family. Only the model and effort combinati
 
 Copy this repository URL into Codex and ask it to install the skill:
 
-[https://github.com/Forgerly-OR-Henry/GPT-6.1-Sol-Router](https://github.com/Forgerly-OR-Henry/GPT-6.1-Sol-Router)
+[https://github.com/Forgerly-OR-Henry/GPT-6.X-Agent-Router](https://github.com/Forgerly-OR-Henry/GPT-6.X-Agent-Router)
 
 You can paste this request directly:
 
 ```text
-Install GPT-6.X Agent Router from https://github.com/Forgerly-OR-Henry/GPT-6.1-Sol-Router.
+Install GPT-6.X Agent Router from https://github.com/Forgerly-OR-Henry/GPT-6.X-Agent-Router.
 Review the repository, then install skills/gpt-6-x-agent-router into my personal Codex skills directory.
 Preserve existing local changes and report any installation conflicts instead of overwriting them.
 Verify the installed skill without modifying config.toml or creating custom agent definitions.
