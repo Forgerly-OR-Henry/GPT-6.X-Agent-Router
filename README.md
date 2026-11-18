@@ -15,14 +15,24 @@ A Codex skill for routing GPT-6-series agent work.
 
 ### Download with Codex
 
-Copy the prompt below into Codex. Change `v6.2` to `v6.1` for the baseline, and choose `skill` (Skill only), `global-prompt` (global prompt only), or `full` (both).
+**Latest release (default):** Copy this prompt into Codex as written. It downloads the Skill-only ZIP from the release GitHub marks as latest.
+
+```text
+Open https://github.com/Forgerly-OR-Henry/GPT-6.X-Agent-Router/releases/latest.
+Download the attached ZIP whose name ends in -skill.zip.
+Save it in my current workspace and tell me the release tag and full file path.
+Download the ZIP only; do not install it or change my Codex configuration.
+```
+
+**Custom download:** Edit the `Release` and `Package` lines before pasting. Choose a published tag such as `v6.1` or `v6.2`, and a package: `skill` (Skill only), `global-prompt` (global prompt only), or `full` (both).
 
 ```text
 Download GPT-6.X Agent Router from https://github.com/Forgerly-OR-Henry/GPT-6.X-Agent-Router/releases.
-Release: v6.2
+Release: v6.1
 Package: skill
 
-Find the release ZIP named gpt-6-x-agent-router-<release>-<package>.zip.
+Use the specified release tag and download the attached ZIP named
+gpt-6-x-agent-router-<release>-<package>.zip. If it is missing, report that.
 Save it in my current workspace and tell me its full path.
 Download the ZIP only; do not install it or change my Codex configuration.
 ```
