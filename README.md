@@ -13,6 +13,20 @@ A Codex skill for routing GPT-6-series agent work.
 | [6.2](https://github.com/Forgerly-OR-Henry/GPT-6.X-Agent-Router/releases/tag/v6.2) | [ZIP](https://github.com/Forgerly-OR-Henry/GPT-6.X-Agent-Router/releases/download/v6.2/gpt-6-x-agent-router-v6.2-global-prompt.zip) | [ZIP](https://github.com/Forgerly-OR-Henry/GPT-6.X-Agent-Router/releases/download/v6.2/gpt-6-x-agent-router-v6.2-full.zip) | [ZIP](https://github.com/Forgerly-OR-Henry/GPT-6.X-Agent-Router/releases/download/v6.2/gpt-6-x-agent-router-v6.2-skill.zip) |
 | [6.1 baseline](https://github.com/Forgerly-OR-Henry/GPT-6.X-Agent-Router/releases/tag/v6.1) | [ZIP](https://github.com/Forgerly-OR-Henry/GPT-6.X-Agent-Router/releases/download/v6.1/gpt-6-x-agent-router-v6.1-global-prompt.zip) | [ZIP](https://github.com/Forgerly-OR-Henry/GPT-6.X-Agent-Router/releases/download/v6.1/gpt-6-x-agent-router-v6.1-full.zip) | [ZIP](https://github.com/Forgerly-OR-Henry/GPT-6.X-Agent-Router/releases/download/v6.1/gpt-6-x-agent-router-v6.1-skill.zip) |
 
+### Download with Codex
+
+Copy the prompt below into Codex. Change `v6.2` to `v6.1` for the baseline, and choose `skill` (Skill only), `global-prompt` (global prompt only), or `full` (both).
+
+```text
+Download GPT-6.X Agent Router from https://github.com/Forgerly-OR-Henry/GPT-6.X-Agent-Router/releases.
+Release: v6.2
+Package: skill
+
+Find the release ZIP named gpt-6-x-agent-router-<release>-<package>.zip.
+Save it in my current workspace and tell me its full path.
+Download the ZIP only; do not install it or change my Codex configuration.
+```
+
 ## Install from a release
 
 Extract the ZIP to a temporary folder first. Use your Codex home directory (`$CODEX_HOME`, or `~/.codex` when unset) as the base for the copy paths below.
