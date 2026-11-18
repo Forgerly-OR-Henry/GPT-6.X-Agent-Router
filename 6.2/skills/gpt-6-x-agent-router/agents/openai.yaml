@@ -1,0 +1,4 @@
+interface:
+  display_name: "GPT-6.X Agent Router"
+  short_description: "Route routine UI to Terra and diagnosis to Sol or Astra"
+  default_prompt: "Use $gpt-6-x-agent-router with GPT-6.2 Sol or GPT-6.2 Astra as parent. Prefer Sol for routine work and Astra for specific difficult problems. Route prescribed Computer Use steps to GPT-6.1 Terra and interactive UI diagnosis to GPT-6.2 Sol or Astra according to difficulty and the parent's authorization."
