@@ -6,35 +6,44 @@ A Codex skill for routing GPT-6-series agent work.
 - [6.1 baseline](6.1/README.md): the preserved routing rules, with GPT-6.1 Terra as the sole Computer Use operator.
 - Global prompt references: [6.2](6.2/global-prompt/global-AGENTS.md) and [6.1 baseline](6.1/global-prompt/global-AGENTS.md). Each version includes its task progress workflow and remains separate from the installable skill.
 
-## Downloads
+## Download with Codex
 
-| Release | Global prompt only | Global prompt + Skill | Skill only |
-| --- | --- | --- | --- |
-| [6.2](https://github.com/Forgerly-OR-Henry/GPT-6.X-Agent-Router/releases/tag/v6.2) | [ZIP](https://github.com/Forgerly-OR-Henry/GPT-6.X-Agent-Router/releases/download/v6.2/gpt-6-x-agent-router-v6.2-global-prompt.zip) | [ZIP](https://github.com/Forgerly-OR-Henry/GPT-6.X-Agent-Router/releases/download/v6.2/gpt-6-x-agent-router-v6.2-full.zip) | [ZIP](https://github.com/Forgerly-OR-Henry/GPT-6.X-Agent-Router/releases/download/v6.2/gpt-6-x-agent-router-v6.2-skill.zip) |
-| [6.1 baseline](https://github.com/Forgerly-OR-Henry/GPT-6.X-Agent-Router/releases/tag/v6.1) | [ZIP](https://github.com/Forgerly-OR-Henry/GPT-6.X-Agent-Router/releases/download/v6.1/gpt-6-x-agent-router-v6.1-global-prompt.zip) | [ZIP](https://github.com/Forgerly-OR-Henry/GPT-6.X-Agent-Router/releases/download/v6.1/gpt-6-x-agent-router-v6.1-full.zip) | [ZIP](https://github.com/Forgerly-OR-Henry/GPT-6.X-Agent-Router/releases/download/v6.1/gpt-6-x-agent-router-v6.1-skill.zip) |
+Copy one of these prompts into Codex. Each uses the release that GitHub marks as latest. To download a specific version, replace `latest` on the `Release` line with a tag such as `v6.1`.
 
-### Download with Codex
-
-**Latest release (default):** Copy this prompt into Codex as written. It downloads the Skill-only ZIP from the release GitHub marks as latest.
+### Global prompt + Skill
 
 ```text
-Open https://github.com/Forgerly-OR-Henry/GPT-6.X-Agent-Router/releases/latest.
-Download the attached ZIP whose name ends in -skill.zip.
-Save it in my current workspace and tell me the release tag and full file path.
-Download the ZIP only; do not install it or change my Codex configuration.
+Use the releases at https://github.com/Forgerly-OR-Henry/GPT-6.X-Agent-Router/releases
+Release: latest
+
+Use the release GitHub marks as latest, or the exact tag above if specified.
+Download the attached ZIP ending in -full.zip to my current workspace.
+Tell me the release tag and the full path to the ZIP. If the attachment is missing, report that.
+Do not install the package or change my Codex configuration.
 ```
 
-**Custom download:** Edit the `Release` and `Package` lines before pasting. Choose a published tag such as `v6.1` or `v6.2`, and a package: `skill` (Skill only), `global-prompt` (global prompt only), or `full` (both).
+### Global prompt only
 
 ```text
-Download GPT-6.X Agent Router from https://github.com/Forgerly-OR-Henry/GPT-6.X-Agent-Router/releases.
-Release: v6.1
-Package: skill
+Use the releases at https://github.com/Forgerly-OR-Henry/GPT-6.X-Agent-Router/releases
+Release: latest
 
-Use the specified release tag and download the attached ZIP named
-gpt-6-x-agent-router-<release>-<package>.zip. If it is missing, report that.
-Save it in my current workspace and tell me its full path.
-Download the ZIP only; do not install it or change my Codex configuration.
+Use the release GitHub marks as latest, or the exact tag above if specified.
+Download the attached ZIP ending in -global-prompt.zip to my current workspace.
+Tell me the release tag and the full path to the ZIP. If the attachment is missing, report that.
+Do not install the package or change my Codex configuration.
+```
+
+### Skill only
+
+```text
+Use the releases at https://github.com/Forgerly-OR-Henry/GPT-6.X-Agent-Router/releases
+Release: latest
+
+Use the release GitHub marks as latest, or the exact tag above if specified.
+Download the attached ZIP ending in -skill.zip to my current workspace.
+Tell me the release tag and the full path to the ZIP. If the attachment is missing, report that.
+Do not install the package or change my Codex configuration.
 ```
 
 ## Install from a release
